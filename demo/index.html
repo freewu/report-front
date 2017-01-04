@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>报表功能demo </title>
+
+    <script type="text/javascript" src="../src/lib/jquery-2.2.4.min.js"></script>
+
+    <script type="text/javascript" src="../src/lib/highcharts/js/highcharts.js"></script>
+    <script type="text/javascript" src="../src/lib/highcharts/js/highcharts-3d.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../src/lib/gri/gri.controls.css">
+    <script type="text/javascript" src="../src/lib/gri/gri.dataTable.js"></script>
+
+    <link href="../src/lib/jquery.showLoading/css/showLoading.css" /> 
+    <script type="text/javascript" src="../src/lib/jquery.showLoading/js/jquery.showLoading.min.js"></script>
+
+    <script type="text/javascript" src="../src/report.js"></script>
+
+    <style type="text/css">
+    .ez-report-demo {
+        border: 1px solid #95B8E7;
+        width: 32%;
+        height: 300px;
+        float :left;
+        margin:12px;
+    }
+    </style>
+</head>
+<body>
+<!-- == 以下是例图的例子 ============================================== -->
+<!--normal 饼图-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+    '>
+</div>
+<!--normal 饼图3D-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+        "type" : "pie_3d"
+    '>
+</div>
+<!--normal 环型图-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+        "type" : "circular"
+    '>
+</div>
+<!--normal 环型图3D-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+        "type" : "circular_3d"
+    '>
+</div>
+<!--normal 扇型图-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+        "type" : "sector"
+    '>
+</div>
+<!--normal 环扇型图-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+        "type" : "circular_sector"
+    '>
+</div>
+<!-- == 以下是表格的例子 ============================================== -->
+<!--table-->
+<div class="ez-report-demo"  report-id="table.json" 
+    report-config = '
+        "type" : "table"
+    '>
+</div>
+<!--table 使用返回的type-->
+<div class="ez-report-demo"  report-id="table.json" 
+    report-config = '
+    '>
+</div>
+<!--table 设置分页数-->
+<div class="ez-report-demo"  report-id="table.json" style="height: 500px;" 
+    report-config = '
+        "pagesize" : 10
+    '>
+</div>
+
+<!-- == 以下是趋势的例子 ============================================== -->
+<!--trend 曲线图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spline"
+    '>
+</div>
+<!--trend 柱状图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "column"
+    '>
+</div>
+<!--trend 面积图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "area"
+    '>
+</div>
+<!--trend 柱状图3D-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "column_3d"
+    '>
+</div>
+<!--trend bar图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "bar"
+    '>
+</div>
+<!--trend 柱状堆叠图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "column_pile"
+    '>
+</div>
+<!--trend 柱状堆叠图3D-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "column_pile_3d"
+    '>
+</div>
+<!--trend 面积堆叠图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "area_pile"
+    '>
+</div>
+
+<!--remote错误的处理-->
+<div class="ez-report-demo"  report-id="error.json" 
+    report-config = '
+        "type" : "area_pile"
+    '>
+</div>
+
+<!--normal 非remote处理-->
+<div class="ez-report-demo" 
+    report-config = '
+        "type" : "pie"
+    '
+    report-data="%7B%22type%22%3A%22pie%22%2C%22config%22%3A%7B%22field_list%22%3A%7B%22sz%22%3A%22%5Cu6df1%5Cu5733%22%2C%22gz%22%3A%22%5Cu5e7f%5Cu5dde%22%2C%22bj%22%3A%22%5Cu5317%5Cu4eac%22%2C%22sh%22%3A%22%5Cu4e0a%5Cu6d77%22%2C%22other%22%3A%22%5Cu5176%5Cu5b83%22%7D%2C%22color_list%22%3A%7B%22sz%22%3A%22%23FF5555%22%2C%22gz%22%3A%22%2355FF55%22%2C%22bj%22%3A%22%230000FF%22%2C%22sh%22%3A%22%23FF00FF%22%2C%22other%22%3A%22%23FFFF55%22%7D%2C%22line_list%22%3A%5B%5D%7D%2C%22data%22%3A%5B%7B%22total_num%22%3A%228070%22%2C%22sz%22%3A%225240%22%2C%22gz%22%3A%223721%22%2C%22bj%22%3A%224462%22%2C%22sh%22%3A%222095%22%2C%22other%22%3A%225552%22%7D%5D%7D" 
+    >
+</div>
+
+<!--trend 非remote处理-->
+<div class="ez-report-demo" 
+    report-config = '
+        "type" : "spline"
+    '
+    report-data="%7B%22type%22%3A%22bar%22%2C%22config%22%3A%7B%22field_list%22%3A%7B%22book.count%22%3A%22%5Cu8bf7%5Cu6c42%5Cu91cf%22%2C%22book.success_count%22%3A%22%5Cu9884%5Cu7ea6%5Cu91cf%22%7D%2C%22color_list%22%3A%5B%5D%2C%22line_list%22%3A%5B%5D%7D%2C%22data%22%3A%7B%222016-09-09%22%3A%7B%22book.count%22%3A%22656%22%2C%22book.success_count%22%3A%22661%22%7D%2C%222016-09-10%22%3A%7B%22book.count%22%3A%22340%22%2C%22book.success_count%22%3A%22994%22%7D%2C%222016-09-11%22%3A%7B%22book.count%22%3A%22677%22%2C%22book.success_count%22%3A%22386%22%7D%2C%222016-09-12%22%3A%7B%22book.count%22%3A%22756%22%2C%22book.success_count%22%3A%22126%22%7D%2C%222016-09-13%22%3A%7B%22book.count%22%3A%22795%22%2C%22book.success_count%22%3A%22661%22%7D%2C%222016-09-14%22%3A%7B%22book.count%22%3A%22313%22%2C%22book.success_count%22%3A%22412%22%7D%2C%222016-09-15%22%3A%7B%22book.count%22%3A%22626%22%2C%22book.success_count%22%3A%22897%22%7D%2C%222016-09-16%22%3A%7B%22book.count%22%3A%22924%22%2C%22book.success_count%22%3A%22510%22%7D%2C%222016-09-17%22%3A%7B%22book.count%22%3A%22621%22%2C%22book.success_count%22%3A%22575%22%7D%2C%222016-09-18%22%3A%7B%22book.count%22%3A%22244%22%2C%22book.success_count%22%3A%22358%22%7D%2C%222016-09-19%22%3A%7B%22book.count%22%3A%22791%22%2C%22book.success_count%22%3A%22425%22%7D%2C%222016-09-20%22%3A%7B%22book.count%22%3A%22957%22%2C%22book.success_count%22%3A%22111%22%7D%2C%222016-09-21%22%3A%7B%22book.count%22%3A%22842%22%2C%22book.success_count%22%3A%22751%22%7D%2C%222016-09-22%22%3A%7B%22book.count%22%3A%22719%22%2C%22book.success_count%22%3A%22531%22%7D%7D%7D" 
+    >
+</div>
+<!--table 非remote处理-->
+<div class="ez-report-demo" 
+    report-config = '
+        "type" : "table"
+    '
+    report-data="%7B%22type%22%3A%22table%22%2C%22config%22%3A%7B%22stat_date%22%3A%7B%22thText%22%3A%22%5Cu65e5%5Cu671f%22%2C%22width%22%3A160%7D%2C%22book.count%22%3A%7B%22thText%22%3A%22%5Cu8bf7%5Cu6c42%5Cu91cf%22%7D%2C%22book.success_count%22%3A%7B%22thText%22%3A%22%5Cu9884%5Cu7ea6%5Cu91cf%22%7D%2C%22book.terminal_count%22%3A%7B%22thText%22%3A%22%5Cu8bbe%5Cu5907%5Cu603b%5Cu6570%22%7D%2C%22book.postman_count%22%3A%7B%22thText%22%3A%22%5Cu9884%5Cu7ea6%5Cu4eba%5Cu6570%22%7D%7D%2C%22data%22%3A%5B%7B%22stat_date%22%3A%222016-09-22%22%2C%22book.count%22%3A%22719%22%2C%22book.success_count%22%3A%22531%22%2C%22book.terminal_count%22%3A%22888%22%2C%22book.postman_count%22%3A%22556%22%7D%2C%7B%22stat_date%22%3A%222016-09-21%22%2C%22book.count%22%3A%22642%22%2C%22book.success_count%22%3A%22751%22%2C%22book.terminal_count%22%3A%22788%22%2C%22book.postman_count%22%3A%2283%22%7D%2C%7B%22stat_date%22%3A%222016-09-20%22%2C%22book.count%22%3A%22957%22%2C%22book.success_count%22%3A%22111%22%2C%22book.terminal_count%22%3A%22891%22%2C%22book.postman_count%22%3A%22618%22%7D%2C%7B%22stat_date%22%3A%222016-09-19%22%2C%22book.count%22%3A%22819%22%2C%22book.success_count%22%3A%22425%22%2C%22book.terminal_count%22%3A%22766%22%2C%22book.postman_count%22%3A%22518%22%7D%2C%7B%22stat_date%22%3A%222016-09-18%22%2C%22book.count%22%3A%22244%22%2C%22book.success_count%22%3A%22435%22%2C%22book.terminal_count%22%3A%22766%22%2C%22book.postman_count%22%3A%22353%22%7D%2C%7B%22stat_date%22%3A%222016-09-17%22%2C%22book.count%22%3A%22221%22%2C%22book.success_count%22%3A%22705%22%2C%22book.terminal_count%22%3A%220%22%2C%22book.postman_count%22%3A%22109%22%7D%2C%7B%22stat_date%22%3A%222016-09-16%22%2C%22book.count%22%3A%22924%22%2C%22book.success_count%22%3A%22501%22%2C%22book.terminal_count%22%3A%220%22%2C%22book.postman_count%22%3A%22501%22%7D%2C%7B%22stat_date%22%3A%222016-09-15%22%2C%22book.count%22%3A%22690%22%2C%22book.success_count%22%3A%22897%22%2C%22book.terminal_count%22%3A%220%22%2C%22book.postman_count%22%3A%22429%22%7D%2C%7B%22stat_date%22%3A%222016-09-14%22%2C%22book.count%22%3A%22313%22%2C%22book.success_count%22%3A%22841%22%2C%22book.terminal_count%22%3A%22852%22%2C%22book.postman_count%22%3A%22539%22%7D%2C%7B%22stat_date%22%3A%222016-09-13%22%2C%22book.count%22%3A%22765%22%2C%22book.success_count%22%3A%22161%22%2C%22book.terminal_count%22%3A%220%22%2C%22book.postman_count%22%3A%220%22%7D%2C%7B%22stat_date%22%3A%222016-09-12%22%2C%22book.count%22%3A%22156%22%2C%22book.success_count%22%3A%22126%22%2C%22book.terminal_count%22%3A%22486%22%2C%22book.postman_count%22%3A%22544%22%7D%2C%7B%22stat_date%22%3A%222016-09-11%22%2C%22book.count%22%3A%22670%22%2C%22book.success_count%22%3A%22386%22%2C%22book.terminal_count%22%3A%220%22%2C%22book.postman_count%22%3A%22806%22%7D%2C%7B%22stat_date%22%3A%222016-09-10%22%2C%22book.count%22%3A%22340%22%2C%22book.success_count%22%3A%22994%22%2C%22book.terminal_count%22%3A%220%22%2C%22book.postman_count%22%3A%22863%22%7D%2C%7B%22stat_date%22%3A%222016-09-09%22%2C%22book.count%22%3A%22656%22%2C%22book.success_count%22%3A%22661%22%2C%22book.terminal_count%22%3A%22484%22%2C%22book.postman_count%22%3A%22993%22%7D%5D%7D" 
+    >
+</div>
+
+<script>
+if("file:" != window.location.protocol) {
+    window.EZ = window.EZ || {}
+    //EZ.report_remote_url = "http://bi.dev/api/report/getData?__id=";
+    EZ.report_remote_url = window.location.href;
+    EZ.report_remote_type = "json";
+    $(document).ready(function() {
+        $(".ez-report-demo").each(function() {
+            EZ.reportDisplay(this);
+        });
+    });
+} else {
+    alert("请使用域名访问");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+    "code":0,
+    "msg":null,
+    "data":{
+        "type":"pie",
+        "config":{
+            "field_list":{
+                "sz":"深圳",
+                "gz":"广州",
+                "bj":"北京",
+                "sh":"上海",
+                "other":"其它"
+            },
+            "color_list":{
+                "sz":"#FF5555",
+                "gz":"#55FF55",
+                "bj":"#0000FF",
+                "sh":"#FF00FF",
+                "other":"#FFFF55"
+            },
+            "line_list":{
+            }
+        },
+        "data":[
+            {
+                "total_num":"8070",
+                "sz":"5240",
+                "gz":"3721",
+                "bj":"4462",
+                "sh":"2095",
+                "other":"5552"
+            }
+        ]
+    }
+}
