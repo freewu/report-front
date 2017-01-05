@@ -199,3 +199,8 @@
 
 		https://github.com/rrx/jquery.showLoading
 
+
+## 更新说明
+
+	2017.01.04 项目init   
+	2017.01.05 修改变量为全局的问题，新增报表自动刷新间隔设置
