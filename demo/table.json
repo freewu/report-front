@@ -91,34 +91,6 @@
                 "book.success_count":"161",
                 "book.terminal_count":"0",
                 "book.postman_count":"0"
-            },
-            {
-                "stat_date":"2016-09-12",
-                "book.count":"156",
-                "book.success_count":"126",
-                "book.terminal_count":"486",
-                "book.postman_count":"544"
-            },
-            {
-                "stat_date":"2016-09-11",
-                "book.count":"670",
-                "book.success_count":"386",
-                "book.terminal_count":"0",
-                "book.postman_count":"806"
-            },
-            {
-                "stat_date":"2016-09-10",
-                "book.count":"340",
-                "book.success_count":"994",
-                "book.terminal_count":"0",
-                "book.postman_count":"863"
-            },
-            {
-                "stat_date":"2016-09-09",
-                "book.count":"656",
-                "book.success_count":"661",
-                "book.terminal_count":"484",
-                "book.postman_count":"993"
             }
         ]
     }
