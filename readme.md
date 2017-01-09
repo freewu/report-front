@@ -16,10 +16,20 @@
 
 	目前支持3种图表展示(表格table,例图normal,趋势图trend)
 
+## Demo
+<a href="demo/">
+![demo](images/demo.png)
+</a>
+
 <a name="normal"></a>
 ## 例图(normal)
 	
-	支持类型 pie,pie_3d,circular,circular_3d,sector,circular_sector
+	支持类型 
+		饼图   pie,pie_3d
+		环形图 circular,circular_3d
+		扇形图 sector,circular_sector,
+		金字塔 pyramid
+		管道图 funnel
 
 ### 数据格式(remote返回数据)
 	
@@ -70,7 +80,17 @@
 <a name="trend"></a>
 ## 趋势图(trend)
 	
-	支持类型 spline,column,area,bar,area_pile,column_3d,column_pile,column_pile_3d
+	支持类型 
+		曲图 spline,
+		面积图 area,bar,area_pile,area_percent
+		柱状图 column,column_3d,column_pile,column_pile_3d,column_percent_3d
+		热区图 heatmap
+        蛛网图 spiderweb,spiderweb_line,
+			  spiderweb_area,spiderweb_area_pile,spiderweb_area_percent
+		      spiderweb_column,spiderweb_column_pile,spiderweb_column_percent
+        极地图 polar,polar_line,
+			  polar_area,polar_area_pile,polar_area_percent
+		      polar_column,polar_column_pile,polar_column_percent
 
 ### 数据格式(remote返回数据)
 	
@@ -204,3 +224,4 @@
 
 	2017.01.04 项目init   
 	2017.01.05 修改变量为全局的问题，新增报表自动刷新间隔设置
+	2017.01.09 新增热区图,蛛网图,极地图,金字塔,管道图

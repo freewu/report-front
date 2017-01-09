@@ -134,36 +134,22 @@
 
     C.prototype._getNormalChartPlotOption = function (type,options) {
         switch(type) {
-            case 'pie_3d': 
-                options.chart.options3d = {
-                    enabled: true,
-                    alpha: 45
-                };
+            case 'pie_3d':  case 'circular': case 'circular_3d':
+                var t = type.split("_");
+                var t0 = t[0];
+                var t1 = (t[1] && undefined != $.inArray(t[1],['3d']))? t[1] : "";
                 options.plotOptions = {
                     pie: {
+                        innerSize: ("circular" == t0)? 100 : 0,
                         depth: 45
                     }
                 };
-                break;
-            case 'circular': 
-                options.plotOptions = {
-                    pie: {
-                        innerSize: 100,
-                        depth: 45
-                    }
-                };
-                break;
-            case 'circular_3d':
-                options.chart.options3d = {
-                    enabled: true,
-                    alpha: 45
-                };
-                options.plotOptions = {
-                    pie: {
-                        innerSize: 100,
-                        depth: 45
-                    }
-                };
+                if("3d" == t1) {
+                    options.chart.options3d = {
+                        enabled: true,
+                        alpha: 45
+                    };
+                }
                 break;
             case 'sector': 
                 options.plotOptions = {
@@ -181,6 +167,39 @@
                         startAngle: -90,
                         endAngle: 90,
                         center: ['50%', '75%']
+                    }
+                };
+                break;
+            case "pyramid": 
+                options.chart = {
+                    type : type, 
+                    marginRight: 100
+                };
+                options.plotOptions = {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b> ({point.y})',
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                };
+                break;
+            case 'funnel': 
+                options.chart = {
+                    type: 'funnel',
+                    marginRight: 100
+                };
+                options.plotOptions = {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b> ({point.y})',
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                            softConnector: true
+                        },
+                        neckWidth: '30%',
+                        neckHeight: '25%'
                     }
                 };
                 break;
@@ -206,15 +225,43 @@
         options.tooltip = {shared: true, crosshairs: false, formatter: this.tipsFormatter};
 
         switch(type) {
-            case 'column_3d': 
-                options.chart = {type: "column"};
-                options.chart.options3d = {
-                    enabled: true,
-                    alpha: 15,
-                    beta: 15,
-                    depth: 50,
-                    viewDistance: 25
+            case 'area_pile': case 'area_percent':
+                var t = type.split("_");
+                var t1 = (t[1] && undefined != $.inArray(t[1],['pile',"percent"]))? t[1] : "";
+                if("pile" == t1) t1 = "normal";
+
+                options.chart = {
+                    type: "area"
                 };
+                options.plotOptions = {
+                    area: {
+                        stacking: t1
+                    }
+                };
+                break;
+            case 'column_3d': case 'column_pile': case 'column_percent': case 'column_pile_3d': case 'column_percent_3d':
+                var t = type.split("_");
+                var t1 = (t[1] && undefined != $.inArray(t[1],['3d','pile',"percent"]))? t[1] : "";
+                var t2 = (t[2] && undefined != $.inArray(t[2],['3d']))? t[2] : "";
+
+                options.chart = { type: "column" };
+                if("3d" == t1 || "3d" == t2 ) {
+                    options.chart.options3d = {
+                        enabled: true,
+                        alpha: 15,
+                        beta: 15,
+                        depth: 50,
+                        viewDistance: 25
+                    };
+                }
+                if(undefined != $.inArray(t1,['pile',"percent"])) {
+                    if("pile" == t1) t1 = "normal";
+                    options.plotOptions = {
+                        column: {
+                            stacking: t1
+                        }
+                    };
+                }
                 break;
             case 'bar':
                 options.plotOptions = {
@@ -225,37 +272,73 @@
                     }
                 };
                 break;
-            case 'column_pile':
-                options.chart = {type: "column"};
-                options.plotOptions = {
-                    column: {
-                        stacking: 'percent'
+            case 'heatmap':
+                options.chart = {type: "heatmap"};
+                options.colorAxis = {
+                    min: 0,
+                    minColor: '#FFFFFF',
+                    maxColor: Highcharts.getOptions().colors[0]
+                };
+                options.yAxis = {
+                    categories: data.ycategories,
+                    title : ""
+                };
+                options.legend = {
+                    align: 'right',
+                    layout: 'vertical',
+                    margin: 0,
+                    verticalAlign: 'top',
+                    y: 25
+                    //symbolHeight: 280
+                };
+                options.tooltip = {
+                    formatter: function () {
+                        return '<b>' + this.series.xAxis.categories[this.point.x] + '</b><br/><b>' + 
+                            this.series.yAxis.categories[this.point.y] + '</b><br>'+
+                            this.point.value + '</b>';
                     }
                 };
                 break;
-            case 'column_pile_3d':
-                options.chart = {type: "column"};
-                options.chart.options3d = {
-                    enabled: true,
-                    alpha: 15,
-                    beta: 15,
-                    depth: 50,
-                    viewDistance: 25
+            case 'spiderweb' : case 'spiderweb_line': case 'spiderweb_area': case 'spiderweb_column':
+            case 'polar': case 'polar_line': case 'polar_area': case 'polar_column':
+            case 'polar_column_pile': case 'spiderweb_column_pile': case 'polar_area_pile': case 'spiderweb_area_pile':
+            case 'polar_column_percent': case 'spiderweb_column_percent': case 'polar_area_percent': case 'spiderweb_area_percent':
+                var t = type.split("_");
+                var t0 = (t[0] == "spiderweb")? t[0] : "polar";
+                var t1 = (t[1] && undefined != $.inArray(t[1],['line','area','column']))? t[1] : "line";
+                var t2 = (t[2] && undefined != $.inArray(t[2],['pile',"percent"]))? t[2] : "";
+                if("pile" == t2) t2 = "normal";
+
+                options.chart = {
+                    polar: true,
+                    type: t1,
                 };
-                options.plotOptions = {
-                    column: {
-                        stacking: 'normal',
-                        depth: 40
-                    }
+                options.xAxis = {
+                    categories: data.categories,
+                    tickmarkPlacement: 'on',
+                    lineWidth: 0
                 };
-                break;
-            case 'area_pile':
-                options.chart = {type: "area"};
-                options.plotOptions = {
-                    area: {
-                        stacking: 'normal'
-                    }
+                if("spiderweb" == t0) {
+                    options.yAxis = {
+                        gridLineInterpolation: 'polygon',
+                        lineWidth: 0,
+                        min: 0
+                    };
+                }
+                options.tooltip = {
+                    shared: true,
+                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y}</b><br/>'
                 };
+                if("" != t2) {
+                    options.plotOptions = {
+                        series: {
+                            stacking: t2,
+                            shadow: false,
+                            groupPadding: 0,
+                            pointPlacement: 'on'
+                        }
+                    }; 
+                }
                 break;
         }
         return options;
@@ -286,11 +369,17 @@
         options.credits = {enabled: false};
 
         switch(type) {
-            case "spline": case "column": case "area": case "bar": case "area_pile":
-            case "column_3d": case "column_pile": case "column_pile_3d":
+            case "spline": case "column": case "area": case "bar": case "area_pile": case "area_percent":
+            case "column_3d": case "column_pile": case "column_pile_3d": case "column_percent": case 'column_percent_3d':
+            case "heatmap": 
+            case 'spiderweb' : case 'spiderweb_line': case 'spiderweb_area': case 'spiderweb_column':
+            case 'polar': case 'polar_line': case 'polar_area': case 'polar_column':
+            case 'polar_column_pile': case 'spiderweb_column_pile': case 'polar_area_pile': case 'spiderweb_area_pile':
+                        case 'polar_column_percent': case 'spiderweb_column_percent': case 'polar_area_percent': case 'spiderweb_area_percent':
                 options = this._getTrendChartPlotOption(type,options,data);
                 break;
             case 'pie': case 'pie_3d': case 'circular': case 'circular_3d': case 'sector': case 'circular_sector':
+            case 'pyramid': case 'funnel': 
                 options.chart = {type: "pie"};
                 options = this._getNormalChartPlotOption(type,options);
                 break;
@@ -305,8 +394,12 @@
         var type = (this._report_type)? this._report_type : data["type"]; // 使用本地设定的图型
         //var type = data["type"];
         switch(type) {
-            case "spline": case "column": case "area": case "bar": case "area_pile":
-            case "column_3d": case "column_pile": case "column_pile_3d":
+            case "spline": case "column": case "area": case "bar": case "area_pile": case "area_percent":
+            case "column_3d": case "column_pile": case "column_pile_3d": case "column_percent": case 'column_percent_3d':
+            case 'spiderweb' : case 'spiderweb_line': case 'spiderweb_area': case 'spiderweb_column':
+            case 'polar': case 'polar_line': case 'polar_area': case 'polar_column':
+            case 'polar_column_pile': case 'spiderweb_column_pile': case 'polar_area_pile': case 'spiderweb_area_pile':
+            case 'polar_column_percent': case 'spiderweb_column_percent': case 'polar_area_percent': case 'spiderweb_area_percent':
                 var categories = [];
                 var series = {};
 
@@ -330,7 +423,7 @@
                 for (key in data["data"]) {
                     categories.push(key);
                     for (field in config_list["field_list"]) {
-                        series[field].data.push(parseFloat(data["data"][key][field] || 0));
+                        series[field].data.push(parseFloat(data["data"][key][field] || null));
                     }
                 }
                 return {
@@ -338,18 +431,55 @@
                     series: Object.values(series)
                 };
             case 'pie': case 'pie_3d': case 'circular': case 'circular_3d': case 'sector':  case 'circular_sector':
+            case 'pyramid': case 'funnel': 
                 var series = [{name: '', data: []}];
                 var color_list = {};
                 if (data["config"]["color_list"]) color_list = data["config"]["color_list"];
                 
+                var d = (Object.values(data["data"])).pop(); // data["data"][0];
                 for (field in data["config"]["field_list"]) {
-                    var _data = {name: data["config"]["field_list"][field], y: parseFloat(data["data"][0][field] || 0)};
+                    var _data = {name: data["config"]["field_list"][field], y: parseFloat(d[field] || 0)};
                     if (color_list[field]) _data.color = color_list[field];
                     series[0].data.push(_data);
                 }
                 return {
                     series: series
                 };
+            case 'heatmap': 
+                var categories = [];
+                var ycategories = [];
+                var series = {
+                    0:{
+                        "name" : "",
+                        "data" : [],
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                };
+                var config_list = data["config"];
+
+                var f_list = {};
+                var index = 0;
+                for(field in config_list["field_list"]) {
+                    f_list[field] = index;
+                    ycategories.push(config_list["field_list"][field]);
+                    index++;
+                }
+                var d_index = 0;
+                for (key in data["data"]) {
+                    categories.push(key);
+                    for(f in f_list) {
+                        series[0].data.push([d_index,f_list[f],parseFloat(data["data"][key][f] || null)]);
+                    }
+                    d_index++;
+                }
+                return {
+                    ycategories : ycategories,
+                    categories: categories,
+                    series: Object.values(series)
+                };
+                break;
         }
     };
 
@@ -365,8 +495,13 @@
         options = this.getChartOptions(type,d,config);
         // options = $.extend(true, options, {});
 
+        // console.log(JSON.stringify(options));
         this.div.highcharts(options, function (chart) {
             // console.log(chart);
+            //$(".highcharts-tooltip").hide();
+            $("text").each(function() {
+                if("Highcharts.com" == $(this).html()) $(this).hide();
+            });
         });
     };
 

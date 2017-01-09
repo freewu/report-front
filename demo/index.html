@@ -7,7 +7,14 @@
     <script type="text/javascript" src="../src/lib/jquery-2.2.4.min.js"></script>
 
     <script type="text/javascript" src="../src/lib/highcharts/js/highcharts.js"></script>
+    <!--3d图型需要载入-->
     <script type="text/javascript" src="../src/lib/highcharts/js/highcharts-3d.js"></script>
+    <!--headmap 需要载入-->
+    <script type="text/javascript" src="../src/lib/highcharts/js/modules/heatmap.js"></script>
+    <!--polar/ spiderweb 需要载入 -->
+    <script type="text/javascript" src="../src/lib/highcharts/js/highcharts-more.js"></script>
+    <!--pyramid/funnel 需要载入 -->
+    <script src="../src/lib/highcharts/js/modules/funnel.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../src/lib/gri/gri.controls.css">
     <script type="text/javascript" src="../src/lib/gri/gri.dataTable.js"></script>
@@ -23,15 +30,16 @@
         width: 32%;
         height: 300px;
         float :left;
-        margin:12px;
+        margin:5px;
     }
     </style>
 </head>
 <body>
 <!-- == 以下是例图的例子 ============================================== -->
-<!--normal 饼图-->
+<!--normal 饼图  30秒更新一次-->
 <div class="ez-report-demo"  report-id="normal_chart.json" 
     report-config = '
+        "reload_interval" : 10
     '>
 </div>
 <!--normal 饼图3D-->
@@ -43,7 +51,8 @@
 <!--normal 环型图-->
 <div class="ez-report-demo"  report-id="normal_chart.json" 
     report-config = '
-        "type" : "circular"
+        "type" : "circular",
+        "reload_interval" : 30
     '>
 </div>
 <!--normal 环型图3D-->
@@ -120,16 +129,33 @@
         "type" : "column_pile"
     '>
 </div>
+<!--trend 柱状堆叠图(百分比)-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "column_percent"
+    '>
+</div>
 <!--trend 柱状堆叠图3D-->
 <div class="ez-report-demo"  report-id="trend_chart.json" 
     report-config = '
         "type" : "column_pile_3d"
     '>
 </div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "column_percent_3d"
+    '>
+</div>
 <!--trend 面积堆叠图-->
 <div class="ez-report-demo"  report-id="trend_chart.json" 
     report-config = '
         "type" : "area_pile"
+    '>
+</div>
+<!--trend 面积堆叠图（百分比）-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "area_percent"
     '>
 </div>
 
@@ -166,20 +192,129 @@
     >
 </div>
 
+<!--trend headmap 需要includeHighchat相关module-->
+<div class="ez-report-demo"  report-id="trend_chart.json"  style="width: 99%" 
+    report-config = '
+        "type" : "heatmap"
+    '>
+</div>
+
+<!--trend polar 极地图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar_line"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar_area"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar_column"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar_area_pile"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar_column_pile"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar_area_percent"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "polar_area_percent"
+    '>
+</div>
+<!--trend spiderweb  蛛网图-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb_line"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb_area"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb_column"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb_column_pile"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb_area_pile"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb_column_percent"
+    '>
+</div>
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "spiderweb_area_percent"
+    '>
+</div>
+<!--normal pyramid 金字塔-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+        "type" : "pyramid"
+    '>
+</div>
+<!--normal funnel 管道-->
+<div class="ez-report-demo"  report-id="normal_chart.json" 
+    report-config = '
+        "type" : "funnel"
+    '>
+</div>
+<!--normal 只取第一条数展示-->
+<div class="ez-report-demo"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "pie"
+    '>
+</div>
+
 <script>
-if("file:" != window.location.protocol) {
-    window.EZ = window.EZ || {}
-    //EZ.report_remote_url = "http://bi.dev/api/report/getData?__id=";
-    EZ.report_remote_url = window.location.href;
-    EZ.report_remote_type = "json";
-    $(document).ready(function() {
+$(document).ready(function() {
+    if("file:" != window.location.protocol) {
+        window.EZ = window.EZ || {}
+        //EZ.report_remote_url = "http://bi.dev/api/report/getData?__id=";
+        EZ.report_remote_url = window.location.href.replace("index.html","");
+        EZ.report_remote_type = "json";
+
         $(".ez-report-demo").each(function() {
             EZ.reportDisplay(this);
         });
-    });
-} else {
-    alert("请使用域名访问");
-}
+    } else {
+        alert("请使用域名访问");
+    }
+});
 </script>
 </body>
 </html>
