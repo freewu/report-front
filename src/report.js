@@ -241,8 +241,8 @@
                 break;
             case 'column_3d': case 'column_pile': case 'column_percent': case 'column_pile_3d': case 'column_percent_3d':
                 var t = type.split("_");
-                var t1 = (t[1] && undefined != $.inArray(t[1],['3d','pile',"percent"]))? t[1] : "";
-                var t2 = (t[2] && undefined != $.inArray(t[2],['3d']))? t[2] : "";
+                var t1 = (t[1] && ($.inArray(t[1],['3d','pile',"percent"]) >= 0))? t[1] : "";
+                var t2 = (t[2] && ($.inArray(t[2],['3d']) >= 0))? t[2] : "";
 
                 options.chart = { type: "column" };
                 if("3d" == t1 || "3d" == t2 ) {
@@ -254,7 +254,7 @@
                         viewDistance: 25
                     };
                 }
-                if(undefined != $.inArray(t1,['pile',"percent"])) {
+                if($.inArray(t1,['pile',"percent"]) >= 0) {
                     if("pile" == t1) t1 = "normal";
                     options.plotOptions = {
                         column: {
