@@ -16,6 +16,15 @@
 
 	目前支持3种图表展示(表格table,例图normal,趋势图trend)
 
+## 兼容支持
+	
+	tip: 目前有测试过浏览器和版本,不代表不支持低版本或其它浏览器
+
+	Chrome 54
+	Opera 42
+	FireFox 50
+	IE (暂时未知 反正IE8有出现报错了)
+
 ## Demo
 <a href="demo/">
 ![demo](images/demo.png)
