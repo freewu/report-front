@@ -26,6 +26,7 @@
 	Chrome 54
 	Opera 42
 	FireFox 50
+	Safari 10
 	IE 7+ （heatmap在IE7,IE8下能正常展示）
 
 ## Demo
