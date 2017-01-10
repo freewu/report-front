@@ -1,5 +1,12 @@
 ;(function(global) {
 
+    if(Object && Object.values) {
+    } else {
+        Object.values = function(myObj) {
+            return $.map(myObj, function(val, key) { return val; });
+        }
+    }
+
     var remote_url = ("file:" != window.location.protocol)? window.location.href : "";
 
     var _init = function(dom) {
@@ -311,7 +318,7 @@
 
                 options.chart = {
                     polar: true,
-                    type: t1,
+                    type: t1
                 };
                 options.xAxis = {
                     categories: data.categories,
