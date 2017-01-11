@@ -9,6 +9,8 @@
 
     var remote_url = ("file:" != window.location.protocol)? window.location.href : "";
 
+    var cache_data = {};
+
     var _init = function(dom) {
         return new C($(dom));
     };
@@ -85,9 +87,21 @@
 
     C.prototype.getData = function (id,data,config) {
         var url = (global.EZ && global.EZ.report_remote_url)? EZ.report_remote_url : remote_url;
+        var _this = this;
+
+        // 如果有缓存就不再次请求了
+        var cache_key = null;
+
+        // 如果有设置定时更新就没必要缓存了
+        if(!config["reload_interval"]) {
+            cache_key = id + "-"+ JSON.stringify(data);
+            if(cache_data[cache_key]) {
+                this.show(id,cache_data[cache_key],config);
+                return false;
+            }
+        }
 
         this.loading(true);
-        var _this = this; 
         $.ajax({
             type: "get",
             async: false,
@@ -95,22 +109,27 @@
             dataType: (global.EZ && global.EZ.report_remote_type)? global.EZ.report_remote_type : "jsonp",
             data : data,
             success: function(data) {
+                if(cache_key) cache_data[cache_key] = data;
                 _this.loading(false);
-                if(0 == data["code"] && data["data"]) {
-                    if("table" == data["data"]["type"]) {
-                        _this.showTable(id,data["data"],config);
-                    } else {
-                        _this.showChart(id,data["data"],config);
-                    }
-                } else {
-                   if(data["msg"]) _this._show_msg(data["msg"]);
-                }
+                _this.show(id,data,config);
             },
             error: function() {
                 _this.loading(false);
                 _this._show_msg("获取配置信息失败: " + remote_url + id);
             }
         });
+    };
+
+    C.prototype.show = function (id,data,config) {
+        if(0 == data["code"] && data["data"]) {
+            if("table" == data["data"]["type"]) {
+                this.showTable(id,data["data"],config);
+            } else {
+                this.showChart(id,data["data"],config);
+            }
+        } else {
+           if(data["msg"]) this._show_msg(data["msg"]);
+        }
     };
 
     C.prototype.showTable = function (id,data,config) {
@@ -455,15 +474,15 @@
             case 'heatmap': 
                 var categories = [];
                 var ycategories = [];
-                var series = {
-                    0:{
+                var series = [
+                    {
                         "name" : "",
                         "data" : [],
                         dataLabels: {
                             enabled: true
                         }
                     }
-                };
+                ];
                 var config_list = data["config"];
 
                 var f_list = {};
@@ -484,7 +503,7 @@
                 return {
                     ycategories : ycategories,
                     categories: categories,
-                    series: Object.values(series)
+                    series: series
                 };
                 break;
         }
@@ -504,7 +523,6 @@
 
         // console.log(JSON.stringify(options));
         this.div.highcharts(options, function (chart) {
-            // console.log(chart);
             //$(".highcharts-tooltip").hide();
             $("text").each(function() {
                 if("Highcharts.com" == $(this).html()) $(this).hide();

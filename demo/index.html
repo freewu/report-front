@@ -9,27 +9,30 @@
     <script type="text/javascript" src="../src/lib/highcharts/js/highcharts.js"></script>
     <!--3d图型需要载入-->
     <script type="text/javascript" src="../src/lib/highcharts/js/highcharts-3d.js"></script>
-    <!--headmap 需要载入-->
+    <!--heatmap 需要载入-->
     <script type="text/javascript" src="../src/lib/highcharts/js/modules/heatmap.js"></script>
     <!--polar/ spiderweb 需要载入 -->
     <script type="text/javascript" src="../src/lib/highcharts/js/highcharts-more.js"></script>
     <!--pyramid/funnel 需要载入 -->
     <script src="../src/lib/highcharts/js/modules/funnel.js"></script>
 
+    <!--table 需要载入-->
     <link rel="stylesheet" type="text/css" href="../src/lib/gri/gri.controls.css">
     <script type="text/javascript" src="../src/lib/gri/gri.dataTable.js"></script>
 
     <!--[if lt IE 8]>
     <script type="text/javascript" src="../src/lib/JSON/json2.js"></script>
     <![endif]--> 
-    
+
+    <!-- remote loading effect-->
     <link href="../src/lib/jquery.showLoading/css/showLoading.css" /> 
     <script type="text/javascript" src="../src/lib/jquery.showLoading/js/jquery.showLoading.min.js"></script>
 
-    
+    <!-- dev
     <script type="text/javascript" src="../src/report.js"></script>
+    -->
+    <script type="text/javascript" src="../src/report.min.js"></script>
     
-
     <style type="text/css">
     .ez-report-demo {
         border: 1px solid #95B8E7;
@@ -198,8 +201,8 @@
     >
 </div>
 
-<!--trend headmap 需要includeHighchat相关module-->
-<div class="ez-report-demo ez-report-remote"  report-id="trend_chart.json"  style="width: 99%" 
+<!--trend headmap 需要include heatmap相关module-->
+<div class="ez-report-demo ez-report-remote"  report-id="trend_chart.json" 
     report-config = '
         "type" : "heatmap"
     '>

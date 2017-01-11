@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>报表功能demo </title>
+
+    <script type="text/javascript" src="../src/lib/jquery-1.12.4.min.js"></script>
+
+    <script type="text/javascript" src="../src/lib/highcharts/js/highcharts.js"></script>
+
+    <!--headmap 需要载入-->
+    <script type="text/javascript" src="../src/lib/highcharts/js/modules/heatmap.js"></script>
+
+    <!--[if lt IE 8]>
+    <script type="text/javascript" src="../src/lib/JSON/json2.js"></script>
+    <![endif]--> 
+
+    <!-- remote loading effect-->
+    <link href="../src/lib/jquery.showLoading/css/showLoading.css" /> 
+    <script type="text/javascript" src="../src/lib/jquery.showLoading/js/jquery.showLoading.min.js"></script>
+
+    <!-- dev
+    <script type="text/javascript" src="../src/report.js"></script>
+    -->
+    <script type="text/javascript" src="../src/report.min.js"></script>
+</head>
+<body>
+<!--trend headmap 需要include heatmap相关module-->
+<div class="ez-report-demo ez-report-remote"  report-id="trend_chart.json" 
+    report-config = '
+        "type" : "heatmap"
+    '>
+</div>
+<script>
+$(document).ready(function() {
+    if("file:" != window.location.protocol) {
+        window.EZ = window.EZ || {}
+        //EZ.report_remote_url = "http://bi.dev/api/report/getData?__id=";
+        EZ.report_remote_url = window.location.href.replace("heatmap.html","");
+        EZ.report_remote_type = "json";
+
+        $(".ez-report-demo").each(function() {
+            EZ.reportDisplay(this);
+        });
+    } else {
+        $(".ez-report-remote").hide();
+        $(".ez-report-local").each(function() {
+            EZ.reportDisplay(this);
+        });
+    }
+});
+</script>
+</body>
+</html>
