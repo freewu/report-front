@@ -94,11 +94,14 @@
 
         // 如果有设置定时更新就没必要缓存了
         if(!config["reload_interval"]) {
+            var t = data["__type"];
+            data["__type"] = null;
             cache_key = id + "-"+ JSON.stringify(data);
             if(cache_data[cache_key]) {
                 this.show(id,cache_data[cache_key],config);
                 return false;
             }
+            data["__type"] = t;
         }
 
         this.loading(true);
