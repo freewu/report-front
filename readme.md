@@ -248,6 +248,7 @@
 	2017.01.09 新增热区图，蛛网图，极地图，金字塔，管道图
 	2017.01.10 增加对IE7，IE8的支持
 	2017.01.11 新增缓存的处理，使用grunt压缩发布js
+	2017.01.16 支持title和subtitle的设置
 
 
 <div style="border:1px solid blue;padding:24px;position:fixed;bottom:30%;right:0;background-color:#f3ebeb;">

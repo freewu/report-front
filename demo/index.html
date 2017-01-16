@@ -28,11 +28,11 @@
     <link href="../src/lib/jquery.showLoading/css/showLoading.css" /> 
     <script type="text/javascript" src="../src/lib/jquery.showLoading/js/jquery.showLoading.min.js"></script>
 
-    <!-- dev
-    <script type="text/javascript" src="../src/report.js"></script>
-    -->
-    <script type="text/javascript" src="../src/report.min.js"></script>
     
+    <script type="text/javascript" src="../src/report.js"></script>
+    <!-- dev
+    <script type="text/javascript" src="../src/report.min.js"></script>
+    -->
     <style type="text/css">
     .ez-report-demo {
         border: 1px solid #95B8E7;
@@ -48,6 +48,8 @@
 <!--normal 饼图  30秒更新一次-->
 <div class="ez-report-demo ez-report-remote"  report-id="normal_chart.json" 
     report-config = '
+        "title" : "我是标题",
+        "subtitle" : "我是子标题",
         "reload_interval" : 10
     '>
 </div>

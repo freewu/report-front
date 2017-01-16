@@ -391,10 +391,14 @@
         return tips;
     };
 
-    C.prototype.getChartOptions = function (type,data,config) {    
+    C.prototype.getChartOptions = function (type,data,config,src_data) {    
         var options = {};
-        options.title = {text: ''};
-        options.subtitle = {text: ''};
+
+        var title = (config["title"])? config["title"] : ((src_data["title"])? src_data["title"] : "");
+        var subtitle = (config["subtitle"])? config["subtitle"] : ((src_data["subtitle"])? src_data["subtitle"] : ""); 
+
+        options.title = {text: title};
+        options.subtitle = {text: subtitle};
         options.credits = {enabled: false};
 
         switch(type) {
@@ -521,7 +525,7 @@
         var d = this.getChartData(data,config);
         var type = (this._report_type)? this._report_type : data["type"]; // 使用本地设定的图型
         // var type = data["type"];
-        options = this.getChartOptions(type,d,config);
+        options = this.getChartOptions(type,d,config,data);
         // options = $.extend(true, options, {});
 
         // console.log(JSON.stringify(options));
