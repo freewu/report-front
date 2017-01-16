@@ -141,6 +141,7 @@
             return false;
         }
         var dom_id = "ez-report-" + id + " - " + Math.ceil(Math.random() * 1000);
+        this.div.empty();
         this.div.append("<div id='" + dom_id + "'></div>");
         this.div.css("overflow","hidden");
 
@@ -394,8 +395,10 @@
     C.prototype.getChartOptions = function (type,data,config,src_data) {    
         var options = {};
 
-        var title = (config["title"])? config["title"] : ((src_data["title"])? src_data["title"] : "");
-        var subtitle = (config["subtitle"])? config["subtitle"] : ((src_data["subtitle"])? src_data["subtitle"] : ""); 
+        var title = (config["title"])? config["title"] : 
+                                ((src_data["config"] && src_data["config"]["title"])? src_data["config"]["title"] : "");
+        var subtitle = (config["subtitle"])? config["subtitle"] : 
+                            ((src_data["config"] &&  src_data["config"]["subtitle"])? src_data["config"]["subtitle"] : ""); 
 
         options.title = {text: title};
         options.subtitle = {text: subtitle};
